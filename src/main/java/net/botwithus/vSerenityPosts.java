@@ -38,6 +38,7 @@ public class vSerenityPosts extends LoopingScript {
 
     public boolean initialize() {
         super.initialize();
+        return true;
     }
 
     @Override
