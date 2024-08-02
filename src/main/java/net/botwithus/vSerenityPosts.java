@@ -59,28 +59,17 @@ public class vSerenityPosts extends LoopingScript {
 
     public boolean initialize() {
         super.initialize();
-        subscribe(ChatMessageEvent.class, chatMessageEvent -> {
-        if (chatMessageEvent.getMessage().contains("You don't have the necessary")) {
-            println("Out of resources. Stopping script.");
-            setBotState(BotState.IDLE);
-        }
-        });
-        return true;
     }
 
     @Override
     public void onLoop() {
-        //Loops every 100ms by default, to change:
-        //this.loopDelay = 500;
         LocalPlayer player = Client.getLocalPlayer();
         if (player == null || Client.getGameState() != Client.GameState.LOGGED_IN || botState == BotState.IDLE) {
-            //wait some time so we dont immediately start on login.
             Execution.delay(random.nextLong(3000,7000));
             return;
         }
         switch (botState) {
             case IDLE -> {
-                //do nothing
                 println("We're idle!");
                 Execution.delay(random.nextLong(1000,3000));
             }
